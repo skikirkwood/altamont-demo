@@ -7,7 +7,13 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-8">
           <Link href="/">
-            <Image src="/lucid-motors-logo.svg" alt="Lucid Motors" width={140} height={28} />
+            <Image
+              src="/lucid-motors-logo.png"
+              alt="Lucid Motors"
+              width={960}
+              height={61}
+              className="h-8 w-auto max-w-[min(100%,320px)] object-contain object-left sm:h-9 sm:max-w-[400px]"
+            />
           </Link>
         </div>
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">

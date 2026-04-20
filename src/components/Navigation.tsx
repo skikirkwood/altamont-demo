@@ -76,7 +76,14 @@ export default function Navigation({ menu }: Props) {
       <header className="sticky top-0 z-40 bg-white shadow-sm">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center">
-            <Image src="/lucid-motors-logo.svg" alt="Lucid Motors" width={112} height={28} priority />
+            <Image
+              src="/lucid-motors-logo.png"
+              alt="Lucid Motors"
+              width={960}
+              height={61}
+              className="h-7 w-auto max-w-[min(100%,220px)] object-contain object-left sm:h-8 sm:max-w-[280px]"
+              priority
+            />
           </Link>
         </div>
       </header>
@@ -91,7 +98,14 @@ export default function Navigation({ menu }: Props) {
     <header className="sticky top-0 z-40 bg-white shadow-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center">
-          <Image src="/lucid-motors-logo.svg" alt="Lucid Motors" width={112} height={28} priority />
+          <Image
+            src="/lucid-motors-logo.png"
+            alt="Lucid Motors"
+            width={960}
+            height={61}
+            className="h-7 w-auto max-w-[min(100%,220px)] object-contain object-left sm:h-8 sm:max-w-[280px]"
+            priority
+          />
         </Link>
 
         {/* Desktop */}
