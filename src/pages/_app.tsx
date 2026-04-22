@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import type { AppProps as NextAppProps } from "next/app";
+import { useRouter } from "next/router";
 import { Inter } from "next/font/google";
 import {
   NinetailedProvider,
@@ -36,6 +37,8 @@ type AppProps<P = unknown> = {
 } & Omit<NextAppProps<P>, "pageProps">;
 
 export default function App({ Component, pageProps }: AppProps<CustomPageProps>) {
+  const router = useRouter();
+  const locale = router.locale ?? "en-US";
   const audienceEntryIdMap =
     pageProps.ninetailed?.preview?.audienceEntryIdMap || {};
 
@@ -75,7 +78,7 @@ export default function App({ Component, pageProps }: AppProps<CustomPageProps>)
       environment={process.env.NEXT_PUBLIC_NINETAILED_ENVIRONMENT ?? "main"}
       componentViewTrackingThreshold={0}
     >
-      <ContentfulLivePreviewProvider locale="en-US">
+      <ContentfulLivePreviewProvider locale={locale}>
         <div className={inter.variable}>
           <Component {...pageProps} />
         </div>

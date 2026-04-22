@@ -48,14 +48,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
   params,
   preview = false,
+  locale,
 }) => {
   const slug = params?.slug;
   if (!slug) return { notFound: true };
 
   const { getAllExperiences, getAllAudiences } = await import("@/lib/ninetailed");
   const [post, navigation, allExperiences, audienceData] = await Promise.all([
-    getBlogPostBySlug(slug, preview),
-    getNavigationMenu("Main Navigation", preview),
+    getBlogPostBySlug(slug, preview, locale),
+    getNavigationMenu("Main Navigation", preview, locale),
     getAllExperiences(preview),
     getAllAudiences(preview),
   ]);

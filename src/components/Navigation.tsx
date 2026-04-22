@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { isResolvedEntry } from "@/lib/helpers";
 import type { NavigationMenuEntry, NavigationItemEntry } from "@/lib/types";
+import LocaleSwitcher from "@/components/ui/LocaleSwitcher";
 
 interface Props {
   menu: NavigationMenuEntry | null;
@@ -113,6 +114,9 @@ export default function Navigation({ menu }: Props) {
           {items.map((item) => (
             <NavItem key={item.sys.id} item={item} />
           ))}
+          <div className="ml-2 border-l border-gray-200 pl-3">
+            <LocaleSwitcher />
+          </div>
         </nav>
 
         {/* Mobile toggle */}
@@ -149,6 +153,9 @@ export default function Navigation({ menu }: Props) {
               </Link>
             );
           })}
+          <div className="mt-3 border-t border-gray-100 pt-3">
+            <LocaleSwitcher />
+          </div>
         </nav>
       )}
     </header>

@@ -39,11 +39,11 @@ interface Props {
   };
 }
 
-export const getStaticProps: GetStaticProps<Props> = async ({ preview = false }) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ preview = false, locale }) => {
   const { getAllExperiences, getAllAudiences } = await import("@/lib/ninetailed");
   const [rawPosts, navigation, allExperiences, audienceData] = await Promise.all([
-    getAllBlogPosts(preview),
-    getNavigationMenu("Main Navigation", preview),
+    getAllBlogPosts(preview, locale),
+    getNavigationMenu("Main Navigation", preview, locale),
     getAllExperiences(preview),
     getAllAudiences(preview),
   ]);
