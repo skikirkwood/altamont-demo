@@ -32,18 +32,37 @@ export function imageUrl(asset: Asset, width?: number): string {
 }
 
 /**
- * Deep-clones a value while dropping any circular references.
- * Used to make Contentful entry data safe to pass as Next.js page props.
+ * Deep-clones a value while breaking only true circular references
+ * (where an object is an ancestor of itself in the current path).
+ * Unlike a flat WeakSet approach, shared references — the same object
+ * instance appearing at multiple non-overlapping paths — are cloned
+ * normally, so Contentful entries/assets referenced in multiple places
+ * are preserved in full.
  */
 export function serializeSafe<T>(value: T): T {
-  const seen = new WeakSet();
-  return JSON.parse(
-    JSON.stringify(value, (_, v) => {
-      if (typeof v === "object" && v !== null) {
-        if (seen.has(v)) return undefined;
-        seen.add(v);
+  const ancestorSet = new WeakSet<object>();
+
+  function clone(v: unknown): unknown {
+    if (typeof v !== "object" || v === null) return v;
+    if (ancestorSet.has(v)) return undefined;
+
+    ancestorSet.add(v);
+
+    let result: unknown;
+    if (Array.isArray(v)) {
+      result = v.map((item) => clone(item));
+    } else {
+      result = {};
+      for (const [k, val] of Object.entries(v as Record<string, unknown>)) {
+        const cloned = clone(val);
+        if (cloned !== undefined)
+          (result as Record<string, unknown>)[k] = cloned;
       }
-      return v;
-    }),
-  );
+    }
+
+    ancestorSet.delete(v);
+    return result;
+  }
+
+  return clone(value) as T;
 }

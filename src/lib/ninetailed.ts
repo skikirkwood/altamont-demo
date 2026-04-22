@@ -5,22 +5,9 @@ import {
   ExperienceEntryLike,
   AudienceEntryLike,
 } from "@ninetailed/experience.js-utils-contentful";
+import { serializeSafe } from "./helpers";
 
 export { ExperienceMapper } from "@ninetailed/experience.js-utils-contentful";
-
-/** Strip circular references so the data can be serialized as Next.js page props. */
-function serializeSafe<T>(value: T): T {
-  const seen = new WeakSet();
-  return JSON.parse(
-    JSON.stringify(value, (_, v) => {
-      if (typeof v === "object" && v !== null) {
-        if (seen.has(v)) return undefined;
-        seen.add(v);
-      }
-      return v;
-    }),
-  );
-}
 
 export async function getAllExperiences(preview = false) {
   const api = preview ? previewClient : client;
