@@ -11,7 +11,7 @@ import type {
   BlogPostFields,
   NavigationMenuEntry,
 } from "@/lib/types";
-import { isResolvedEntry, serializeSafe } from "@/lib/helpers";
+import { isResolvedEntry, serializeSafe, normalizeNtExperienceEntry } from "@/lib/helpers";
 import type { Document } from "@contentful/rich-text-types";
 
 function plainTextFromRichText(doc: Document | undefined): string {
@@ -39,6 +39,7 @@ function parseExperiences(post: BlogPostEntry) {
   const experiences = (post.fields as any).nt_experiences;
   if (!Array.isArray(experiences) || experiences.length === 0) return [];
   return experiences
+    .map(normalizeNtExperienceEntry)
     .filter((exp: any) => ExperienceMapper.isExperienceEntry(exp))
     .map((exp: any) => ExperienceMapper.mapExperience(exp));
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { Experience } from "@ninetailed/experience.js-next";
 import { ExperienceMapper } from "@ninetailed/experience.js-utils-contentful";
-import { getContentTypeId, isResolvedEntry } from "@/lib/helpers";
+import { getContentTypeId, isResolvedEntry, normalizeNtExperienceEntry } from "@/lib/helpers";
 import type { SectionEntry } from "@/lib/types";
 
 import HeroBanner from "./sections/HeroBanner";
@@ -36,6 +36,7 @@ function parseExperiences(entry: any) {
   if (!Array.isArray(experiences) || experiences.length === 0) return [];
 
   return experiences
+    .map(normalizeNtExperienceEntry)
     .filter((exp: any) => ExperienceMapper.isExperienceEntry(exp))
     .map((exp: any) => ExperienceMapper.mapExperience(exp));
 }

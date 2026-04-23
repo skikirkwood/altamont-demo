@@ -25,12 +25,13 @@ import type {
   NavigationMenuEntry,
   SeoMetadataEntry,
 } from "@/lib/types";
-import { isResolvedEntry, serializeSafe } from "@/lib/helpers";
+import { isResolvedEntry, serializeSafe, normalizeNtExperienceEntry } from "@/lib/helpers";
 
 function parseExperiences(post: BlogPostEntry) {
   const experiences = (post.fields as any).nt_experiences;
   if (!Array.isArray(experiences) || experiences.length === 0) return [];
   return experiences
+    .map(normalizeNtExperienceEntry)
     .filter((exp: any) => ExperienceMapper.isExperienceEntry(exp))
     .map((exp: any) => ExperienceMapper.mapExperience(exp));
 }

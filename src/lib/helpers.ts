@@ -39,6 +39,35 @@ export function imageUrl(asset: Asset, width?: number): string {
  * normally, so Contentful entries/assets referenced in multiple places
  * are preserved in full.
  */
+/**
+ * Ninetailed's Contentful app sometimes stores nt_config.components as a plain
+ * object instead of an array (newer experience creation flow). The core
+ * ExperienceMapper uses Zod which requires an array, so isExperienceEntry()
+ * returns false and the experience is silently dropped. This normalizes the
+ * entry before handing it to the mapper.
+ */
+export function normalizeNtExperienceEntry(exp: unknown): unknown {
+  if (typeof exp !== "object" || exp === null) return exp;
+  const entry = exp as Record<string, unknown>;
+  const fields = entry.fields as Record<string, unknown> | undefined;
+  if (!fields) return exp;
+  const config = fields.nt_config as Record<string, unknown> | undefined;
+  if (!config) return exp;
+  if (!Array.isArray(config.components) && typeof config.components === "object" && config.components !== null) {
+    return {
+      ...entry,
+      fields: {
+        ...fields,
+        nt_config: {
+          ...config,
+          components: [config.components],
+        },
+      },
+    };
+  }
+  return exp;
+}
+
 export function serializeSafe<T>(value: T): T {
   const ancestorSet = new WeakSet<object>();
 
