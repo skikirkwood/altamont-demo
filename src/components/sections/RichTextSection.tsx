@@ -30,34 +30,35 @@ export default function RichTextSection({ entry: initial }: Props) {
   const isSplitLeft = style === "split-image-left";
   const isSplitRight = style === "split-image-right";
   const isSplit = isSplitLeft || isSplitRight;
-
-  const imageBlock = fields.image && isResolvedEntry(fields.image) ? (
-    <div
-      className="relative aspect-video overflow-hidden rounded-xl"
-      {...inspectorProps({ fieldId: "image" })}
-    >
-      <ContentfulImage
-        entry={fields.image}
-        fill
-        className="object-cover"
-        sizes="(min-width: 1024px) 50vw, 100vw"
-      />
-    </div>
-  ) : null;
+  const isCentered = style === "centered";
+  const hasImage = !!(fields.image && isResolvedEntry(fields.image));
 
   return (
     <section className="py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Text column(s) */}
         <div
           className={
             isSplit
               ? "grid items-center gap-12 lg:grid-cols-2"
-              : style === "centered"
+              : isCentered
                 ? "mx-auto max-w-3xl text-center"
                 : "mx-auto max-w-3xl"
           }
         >
-          {isSplitLeft && imageBlock}
+          {isSplitLeft && hasImage && (
+            <div
+              className="relative aspect-video overflow-hidden rounded-xl"
+              {...inspectorProps({ fieldId: "image" })}
+            >
+              <ContentfulImage
+                entry={fields.image as ImageWrapperEntry}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          )}
 
           <div>
             {fields.headline && (
@@ -83,8 +84,35 @@ export default function RichTextSection({ entry: initial }: Props) {
             )}
           </div>
 
-          {isSplitRight && imageBlock}
+          {isSplitRight && hasImage && (
+            <div
+              className="relative aspect-video overflow-hidden rounded-xl"
+              {...inspectorProps({ fieldId: "image" })}
+            >
+              <ContentfulImage
+                entry={fields.image as ImageWrapperEntry}
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 50vw, 100vw"
+              />
+            </div>
+          )}
         </div>
+
+        {/* Full-width image below centered text */}
+        {isCentered && hasImage && (
+          <div
+            className="relative mt-12 aspect-video w-full overflow-hidden rounded-xl"
+            {...inspectorProps({ fieldId: "image" })}
+          >
+            <ContentfulImage
+              entry={fields.image as ImageWrapperEntry}
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+          </div>
+        )}
       </div>
     </section>
   );
