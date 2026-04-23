@@ -11,8 +11,8 @@ const styleMap: Record<string, string> = {
   primary:
     "inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-blue-700 transition-colors",
   secondary:
-    "inline-flex items-center justify-center rounded-full border-2 border-blue-600 bg-white px-6 py-3 text-sm font-semibold text-blue-600 hover:bg-blue-50 transition-colors",
-  link: "inline-flex items-center text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors group",
+    "inline-flex items-center justify-center rounded-full border-2 border-blue-500 bg-transparent px-6 py-3 text-sm font-semibold text-blue-400 hover:bg-blue-500/10 transition-colors",
+  link: "inline-flex items-center text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors group",
 };
 
 export default function Cta({ entry, className }: Props) {

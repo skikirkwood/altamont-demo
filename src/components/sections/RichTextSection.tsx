@@ -62,7 +62,7 @@ export default function RichTextSection({ entry: initial }: Props) {
           <div>
             {fields.headline && (
               <h2
-                className="mb-6 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                className="mb-6 text-3xl font-bold tracking-tight text-white sm:text-4xl"
                 {...inspectorProps({ fieldId: "headline" })}
               >
                 {fields.headline}
@@ -70,7 +70,7 @@ export default function RichTextSection({ entry: initial }: Props) {
             )}
             {fields.body && (
               <div
-                className="prose prose-lg max-w-none text-gray-600"
+                className="prose prose-lg max-w-none text-gray-300"
                 {...inspectorProps({ fieldId: "body" })}
               >
                 {documentToReactComponents(fields.body)}

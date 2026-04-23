@@ -41,8 +41,8 @@ function PlanCard({
     <div
       className={`relative flex flex-col rounded-2xl p-8 ${
         featured
-          ? "border-2 border-blue-600 bg-white shadow-xl ring-1 ring-blue-600/10"
-          : "border border-gray-200 bg-white shadow-md"
+          ? "border-2 border-blue-500 bg-zinc-900 shadow-xl shadow-blue-500/10"
+          : "border border-white/10 bg-zinc-900"
       }`}
     >
       {fields.badge && (
@@ -56,11 +56,11 @@ function PlanCard({
             <ContentfulImage entry={fields.icon} width={48} height={48} />
           </div>
         )}
-        <h3 className="text-xl font-bold text-gray-900" {...inspectorProps({ fieldId: "name" })}>
+        <h3 className="text-xl font-bold text-white" {...inspectorProps({ fieldId: "name" })}>
           {fields.name}
         </h3>
         {fields.description && (
-          <p className="mt-2 text-sm text-gray-600" {...inspectorProps({ fieldId: "description" })}>
+          <p className="mt-2 text-sm text-gray-400" {...inspectorProps({ fieldId: "description" })}>
             {fields.description}
           </p>
         )}
@@ -68,7 +68,7 @@ function PlanCard({
 
       {fields.monthlyPrice && (
         <div className="mb-6" {...inspectorProps({ fieldId: "monthlyPrice" })}>
-          <span className="text-4xl font-bold text-gray-900">
+          <span className="text-4xl font-bold text-white">
             {fields.monthlyPrice}
           </span>
           <span className="text-sm text-gray-500">/mo</span>
@@ -83,9 +83,9 @@ function PlanCard({
       {fields.features && fields.features.length > 0 && (
         <ul className="mb-8 flex-1 space-y-3" {...inspectorProps({ fieldId: "features" })}>
           {fields.features.map((feature, i) => (
-            <li key={i} className="flex items-start gap-2 text-sm text-gray-700">
+            <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
               <svg
-                className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-600"
+                className="mt-0.5 h-4 w-4 flex-shrink-0 text-blue-400"
                 fill="currentColor"
                 viewBox="0 0 20 20"
               >
@@ -106,7 +106,7 @@ function PlanCard({
       )}
 
       {fields.legalDisclaimer && (
-        <p className="mt-4 text-xs text-gray-400">{fields.legalDisclaimer}</p>
+        <p className="mt-4 text-xs text-gray-500">{fields.legalDisclaimer}</p>
       )}
     </div>
   );
@@ -133,13 +133,13 @@ export default function PlanComparison({ entry: initial }: Props) {
       : null;
 
   return (
-    <section className="bg-gray-50 py-16 lg:py-24">
+    <section className="bg-zinc-950 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {(fields.headline || fields.description) && (
           <div className="mb-12 text-center">
             {fields.headline && (
               <h2
-                className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
                 {...inspectorProps({ fieldId: "headline" })}
               >
                 {fields.headline}
@@ -147,7 +147,7 @@ export default function PlanComparison({ entry: initial }: Props) {
             )}
             {fields.description && (
               <p
-                className="mx-auto mt-4 max-w-2xl text-lg text-gray-600"
+                className="mx-auto mt-4 max-w-2xl text-lg text-gray-400"
                 {...inspectorProps({ fieldId: "description" })}
               >
                 {fields.description}

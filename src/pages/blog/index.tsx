@@ -78,10 +78,10 @@ export default function BlogIndex({
 
   return (
     <Layout navigation={navigation} title="Blog">
-      <section className="border-b border-gray-100 bg-gray-50 py-14 lg:py-20">
+      <section className="border-b border-white/10 bg-zinc-950 py-14 lg:py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl font-bold tracking-tight text-gray-900">Blog</h1>
-          <p className="mt-3 max-w-2xl text-lg text-gray-600">
+          <h1 className="text-4xl font-bold tracking-tight text-white">Blog</h1>
+          <p className="mt-3 max-w-2xl text-lg text-gray-400">
             Stories from Lucid — news, technology, and the road ahead.
           </p>
         </div>
@@ -99,8 +99,8 @@ export default function BlogIndex({
 
             return (
               <li key={post.sys.id}>
-                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition hover:shadow-md">
-                  <Link href={`/blog/${slug}`} className="relative block aspect-[16/10] overflow-hidden bg-gray-100">
+                <article className="flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-zinc-900 transition hover:border-white/20">
+                  <Link href={`/blog/${slug}`} className="relative block aspect-[16/10] overflow-hidden bg-zinc-800">
                     {fields.featuredImage && isResolvedEntry(fields.featuredImage) && (
                       <ContentfulImage
                         entry={fields.featuredImage}
@@ -111,20 +111,20 @@ export default function BlogIndex({
                     )}
                   </Link>
                   <div className="flex flex-1 flex-col p-6">
-                    <h2 className="text-xl font-semibold text-gray-900">
-                      <Link href={`/blog/${slug}`} className="hover:text-gray-700">
+                    <h2 className="text-xl font-semibold text-white">
+                      <Link href={`/blog/${slug}`} className="hover:text-gray-300 transition-colors">
                         {fields.title}
                       </Link>
                     </h2>
                     {author && (
                       <p className="mt-2 text-sm font-medium text-gray-500">{author}</p>
                     )}
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-600">
+                    <p className="mt-3 flex-1 text-sm leading-relaxed text-gray-400">
                       {excerpt(fields.body)}
                     </p>
                     <Link
                       href={`/blog/${slug}`}
-                      className="mt-4 inline-flex text-sm font-medium text-gray-900 underline-offset-4 hover:underline"
+                      className="mt-4 inline-flex text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors underline-offset-4 hover:underline"
                     >
                       Read more
                     </Link>
@@ -136,7 +136,7 @@ export default function BlogIndex({
         </ul>
 
         {(posts ?? []).filter(isResolvedEntry).length === 0 && (
-          <p className="text-center text-gray-600">No posts yet. Add a Blog Post entry in Contentful.</p>
+          <p className="text-center text-gray-500">No posts yet. Add a Blog Post entry in Contentful.</p>
         )}
       </section>
     </Layout>

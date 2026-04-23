@@ -89,7 +89,7 @@ export default function BlogPostPage({
     return (
       <Layout navigation={navigation} title="Not Found">
         <section className="flex min-h-[40vh] items-center justify-center px-4">
-          <p className="text-gray-600">This post could not be found.</p>
+          <p className="text-gray-400">This post could not be found.</p>
         </section>
       </Layout>
     );
@@ -106,16 +106,16 @@ export default function BlogPostPage({
   return (
     <Layout navigation={navigation} seo={seo} title={fields.title}>
       <article>
-        <header className="border-b border-gray-100 bg-gray-50 py-12 lg:py-16">
+        <header className="border-b border-white/10 bg-zinc-950 py-12 lg:py-16">
           <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
             <h1
-              className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl"
+              className="text-4xl font-bold tracking-tight text-white sm:text-5xl"
               {...inspector({ fieldId: "title" })}
             >
               {fields.title}
             </h1>
             {author && isResolvedEntry(author) && (
-              <p className="mt-4 text-sm font-medium text-gray-600">
+              <p className="mt-4 text-sm font-medium text-gray-400">
                 {(author.fields as { name?: string }).name}
               </p>
             )}
@@ -124,7 +124,7 @@ export default function BlogPostPage({
 
         {fields.featuredImage && isResolvedEntry(fields.featuredImage) && (
           <div
-            className="relative mx-auto aspect-[21/9] max-w-7xl bg-gray-100"
+            className="relative mx-auto aspect-[21/9] max-w-7xl bg-zinc-900"
             {...inspector({ fieldId: "featuredImage" })}
           >
             <ContentfulImage
@@ -139,20 +139,20 @@ export default function BlogPostPage({
 
         <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:px-8">
           <div
-            className="prose prose-lg max-w-none text-gray-700"
+            className="prose prose-lg max-w-none text-gray-300"
             {...inspector({ fieldId: "body" })}
           >
             {fields.body && documentToReactComponents(fields.body)}
           </div>
 
           {author && isResolvedEntry(author) && (
-            <aside className="mt-14 rounded-xl border border-gray-200 bg-gray-50 p-6 lg:p-8">
+            <aside className="mt-14 rounded-xl border border-white/10 bg-zinc-900 p-6 lg:p-8">
               <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
                 {(() => {
                   const img = (author.fields as AuthorFields).image;
                   if (img && isResolvedEntry(img)) {
                     return (
-                      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-gray-100 ring-1 ring-gray-200">
+                      <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-zinc-800 ring-1 ring-white/10">
                         <ContentfulImage entry={img} fill className="object-cover" sizes="80px" />
                       </div>
                     );
@@ -163,10 +163,10 @@ export default function BlogPostPage({
                   <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">
                     About the author
                   </p>
-                  <p className="mt-1 text-lg font-semibold text-gray-900">
+                  <p className="mt-1 text-lg font-semibold text-white">
                     {(author.fields as AuthorFields).name}
                   </p>
-                  <div className="prose prose-sm mt-3 max-w-none text-gray-600">
+                  <div className="prose prose-sm mt-3 max-w-none text-gray-400">
                     {documentToReactComponents((author.fields as AuthorFields).body)}
                   </div>
                 </div>

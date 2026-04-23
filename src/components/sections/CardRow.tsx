@@ -32,12 +32,10 @@ function FeatureCard({ entry: initial }: { entry: FeatureCardEntry }) {
 
   return (
     <div
-      className={`group flex flex-col overflow-hidden rounded-xl shadow-md transition-shadow hover:shadow-xl ${
-        fields.style === "dark"
-          ? "bg-gray-900 text-white"
-          : fields.style === "highlight"
-            ? "bg-blue-600 text-white"
-            : "bg-white text-gray-900"
+      className={`group flex flex-col overflow-hidden rounded-xl ring-1 ring-white/10 transition-shadow hover:shadow-xl hover:shadow-black/40 ${
+        fields.style === "highlight"
+          ? "bg-blue-600 text-white"
+          : "bg-zinc-900 text-white"
       }`}
     >
       {fields.image && isResolvedEntry(fields.image) && (
@@ -54,21 +52,19 @@ function FeatureCard({ entry: initial }: { entry: FeatureCardEntry }) {
         {fields.eyebrow && (
           <span
             className={`mb-2 text-xs font-semibold uppercase tracking-wider ${
-              isDark ? "text-blue-300" : "text-blue-600"
+              isDark ? "text-blue-400" : "text-blue-400"
             }`}
             {...inspectorProps({ fieldId: "eyebrow" })}
           >
             {fields.eyebrow}
           </span>
         )}
-        <h3 className="text-lg font-bold" {...inspectorProps({ fieldId: "headline" })}>
+        <h3 className="text-lg font-bold text-white" {...inspectorProps({ fieldId: "headline" })}>
           {fields.headline}
         </h3>
         {fields.description && (
           <p
-            className={`mt-2 flex-1 text-sm leading-relaxed ${
-              isDark ? "text-gray-300" : "text-gray-600"
-            }`}
+            className="mt-2 flex-1 text-sm leading-relaxed text-gray-400"
             {...inspectorProps({ fieldId: "description" })}
           >
             {fields.description}
@@ -105,7 +101,7 @@ export default function CardRow({ entry: initial }: Props) {
           <div className="mb-12 text-center">
             {fields.headline && (
               <h2
-                className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
                 {...inspectorProps({ fieldId: "headline" })}
               >
                 {fields.headline}
@@ -113,7 +109,7 @@ export default function CardRow({ entry: initial }: Props) {
             )}
             {fields.description && (
               <p
-                className="mx-auto mt-4 max-w-2xl text-lg text-gray-600"
+                className="mx-auto mt-4 max-w-2xl text-lg text-gray-400"
                 {...inspectorProps({ fieldId: "description" })}
               >
                 {fields.description}

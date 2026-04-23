@@ -20,7 +20,6 @@ export default function LocaleSwitcher() {
     router.push(router.asPath, router.asPath, { locale, scroll: false });
   }
 
-  // Close on outside click
   useEffect(() => {
     function onClickOutside(e: MouseEvent) {
       if (ref.current && !ref.current.contains(e.target as Node)) {
@@ -35,7 +34,7 @@ export default function LocaleSwitcher() {
     <div ref={ref} className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+        className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-gray-300 hover:bg-white/10 hover:text-white transition-colors"
         aria-haspopup="listbox"
         aria-expanded={open}
       >
@@ -54,7 +53,7 @@ export default function LocaleSwitcher() {
       {open && (
         <ul
           role="listbox"
-          className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg bg-white py-1 shadow-xl ring-1 ring-gray-200"
+          className="absolute right-0 top-full z-50 mt-1 w-44 rounded-lg bg-zinc-900 py-1 shadow-xl ring-1 ring-white/10"
         >
           {Object.entries(LOCALES).map(([code, { label, flag }]) => (
             <li key={code} role="option" aria-selected={code === current}>
@@ -62,14 +61,14 @@ export default function LocaleSwitcher() {
                 onClick={() => handleSelect(code)}
                 className={`flex w-full items-center gap-2.5 px-4 py-2 text-left text-sm transition-colors
                   ${code === current
-                    ? "bg-gray-50 font-semibold text-gray-900"
-                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+                    ? "bg-white/10 font-semibold text-white"
+                    : "text-gray-300 hover:bg-white/10 hover:text-white"
                   }`}
               >
                 <span aria-hidden="true">{flag}</span>
                 {label}
                 {code === current && (
-                  <svg className="ml-auto h-4 w-4 text-gray-900" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <svg className="ml-auto h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 )}

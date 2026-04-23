@@ -22,19 +22,19 @@ function FaqItem({ item: initial }: { item: FaqItemEntry }) {
   };
 
   return (
-    <div className="border-b border-gray-200">
+    <div className="border-b border-white/10">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between py-5 text-left"
       >
         <span
-          className="text-base font-medium text-gray-900"
+          className="text-base font-medium text-white"
           {...inspectorProps({ fieldId: "question" })}
         >
           {fields.question}
         </span>
         <svg
-          className={`h-5 w-5 flex-shrink-0 text-gray-500 transition-transform duration-200 ${
+          className={`h-5 w-5 flex-shrink-0 text-gray-400 transition-transform duration-200 ${
             open ? "rotate-180" : ""
           }`}
           fill="none"
@@ -51,7 +51,7 @@ function FaqItem({ item: initial }: { item: FaqItemEntry }) {
       </button>
       {open && fields.answer && (
         <div
-          className="pb-5 text-sm leading-relaxed text-gray-600 prose prose-sm max-w-none"
+          className="pb-5 text-sm leading-relaxed text-gray-400 prose prose-sm max-w-none"
           {...inspectorProps({ fieldId: "answer" })}
         >
           {documentToReactComponents(fields.answer)}
@@ -78,13 +78,13 @@ export default function FaqSection({ entry: initial }: Props) {
       <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
         {fields.headline && (
           <h2
-            className="mb-8 text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+            className="mb-8 text-center text-3xl font-bold tracking-tight text-white sm:text-4xl"
             {...inspectorProps({ fieldId: "headline" })}
           >
             {fields.headline}
           </h2>
         )}
-        <div className="divide-y divide-gray-200 border-t border-gray-200" {...inspectorProps({ fieldId: "items" })}>
+        <div className="divide-y divide-white/10 border-t border-white/10" {...inspectorProps({ fieldId: "items" })}>
           {items.map((item) => (
             <FaqItem key={item.sys.id} item={item} />
           ))}

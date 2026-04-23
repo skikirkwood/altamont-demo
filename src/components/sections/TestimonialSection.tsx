@@ -27,7 +27,7 @@ function TestimonialCard({ entry: initial }: { entry: TestimonialEntry }) {
   };
 
   return (
-    <div className="flex flex-col rounded-xl bg-white p-6 shadow-md">
+    <div className="flex flex-col rounded-xl bg-zinc-900 p-6 ring-1 ring-white/10">
       <div className="flex items-center gap-4 mb-4">
         {fields.image && isResolvedEntry(fields.image) && (
           <div className="relative h-12 w-12 overflow-hidden rounded-full">
@@ -40,7 +40,7 @@ function TestimonialCard({ entry: initial }: { entry: TestimonialEntry }) {
           </div>
         )}
         <div>
-          <p className="font-semibold text-gray-900" {...inspectorProps({ fieldId: "name" })}>
+          <p className="font-semibold text-white" {...inspectorProps({ fieldId: "name" })}>
             {fields.name}
           </p>
           {fields.vehicleInfo && (
@@ -51,20 +51,20 @@ function TestimonialCard({ entry: initial }: { entry: TestimonialEntry }) {
         </div>
       </div>
       {fields.storyLabel && (
-        <span className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-600">
+        <span className="mb-2 text-xs font-semibold uppercase tracking-wider text-blue-400">
           {fields.storyLabel}
         </span>
       )}
       {fields.headline && (
         <h3
-          className="mb-2 text-lg font-bold text-gray-900"
+          className="mb-2 text-lg font-bold text-white"
           {...inspectorProps({ fieldId: "headline" })}
         >
           {fields.headline}
         </h3>
       )}
       <blockquote
-        className="flex-1 text-sm leading-relaxed text-gray-600 italic"
+        className="flex-1 text-sm leading-relaxed text-gray-400 italic"
         {...inspectorProps({ fieldId: "quote" })}
       >
         &ldquo;{fields.quote}&rdquo;
@@ -88,13 +88,13 @@ export default function TestimonialSection({ entry: initial }: Props) {
   if (testimonials.length === 0) return null;
 
   return (
-    <section className="bg-gray-50 py-16 lg:py-24">
+    <section className="bg-zinc-950 py-16 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {(fields.headline || fields.description) && (
           <div className="mb-12 text-center">
             {fields.headline && (
               <h2
-                className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"
+                className="text-3xl font-bold tracking-tight text-white sm:text-4xl"
                 {...inspectorProps({ fieldId: "headline" })}
               >
                 {fields.headline}
@@ -102,7 +102,7 @@ export default function TestimonialSection({ entry: initial }: Props) {
             )}
             {fields.description && (
               <p
-                className="mx-auto mt-4 max-w-2xl text-lg text-gray-600"
+                className="mx-auto mt-4 max-w-2xl text-lg text-gray-400"
                 {...inspectorProps({ fieldId: "description" })}
               >
                 {fields.description}
