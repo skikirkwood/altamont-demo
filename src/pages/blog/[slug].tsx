@@ -11,6 +11,7 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { Experience } from "@ninetailed/experience.js-next";
 import { ExperienceMapper } from "@ninetailed/experience.js-utils-contentful";
 import {
+  getAllBlogPosts,
   getAllBlogPostSlugs,
   getBlogPostBySlug,
   getNavigationMenu,
@@ -152,6 +153,39 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
   ]);
 
   if (!post) return { notFound: true };
+
+  // If this post has no nt_experiences it may be a Ninetailed variant entry.
+  // Find the baseline post that references it and redirect there so that the
+  // Experience component (which only lives on the baseline URL) can handle
+  // audience switching correctly.
+  const postExperiences = (post.fields as any).nt_experiences;
+  if (!postExperiences || (Array.isArray(postExperiences) && postExperiences.length === 0)) {
+    const allPosts = await getAllBlogPosts(preview, locale, false);
+    let baselineSlug: string | null = null;
+    outer: for (const candidate of allPosts) {
+      if (candidate.sys.id === post.sys.id) continue;
+      const exps = (candidate.fields as any).nt_experiences;
+      if (!Array.isArray(exps) || exps.length === 0) continue;
+      for (const exp of exps) {
+        const config = (exp as any)?.fields?.nt_config;
+        const components = Array.isArray(config?.components)
+          ? config.components
+          : config?.components
+          ? [config.components]
+          : [];
+        for (const comp of components) {
+          const variants: any[] = Array.isArray(comp.variants) ? comp.variants : [];
+          if (variants.some((v) => v?.sys?.id === post.sys.id)) {
+            baselineSlug = (candidate.fields as any).slug ?? null;
+            break outer;
+          }
+        }
+      }
+    }
+    if (baselineSlug) {
+      return { redirect: { destination: `/blog/${baselineSlug}`, permanent: false } };
+    }
+  }
 
   return {
     props: {

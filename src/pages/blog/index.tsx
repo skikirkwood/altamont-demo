@@ -44,9 +44,11 @@ function parseExperiences(post: BlogPostEntry) {
     .map((exp: any) => ExperienceMapper.mapExperience(exp));
 }
 
-function BlogPostCard(entry: BlogPostEntry) {
+function BlogPostCard(entry: BlogPostEntry & { baselineSlug?: string }) {
   const fields = entry.fields as BlogPostFields & { includeInBlogSplashPage?: boolean };
-  const slug = fields.slug ?? "";
+  // Always link to the baseline slug so audience-swapped variants don't send
+  // visitors to a URL that has no nt_experiences configured.
+  const slug = entry.baselineSlug ?? fields.slug ?? "";
   const author =
     fields.author && isResolvedEntry(fields.author)
       ? (fields.author.fields as { name?: string }).name
@@ -155,6 +157,7 @@ export default function BlogIndex({
                 id={post.sys.id}
                 component={BlogPostCard}
                 experiences={parseExperiences(post)}
+                passthroughProps={{ baselineSlug: (post.fields as BlogPostFields).slug }}
               />
             </li>
           ))}
