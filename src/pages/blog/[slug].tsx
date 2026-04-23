@@ -155,9 +155,9 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
   if (!post) return { notFound: true };
 
   // If this post has no nt_experiences it may be a Ninetailed variant entry.
-  // Find the baseline post that references it and redirect there so that the
-  // Experience component (which only lives on the baseline URL) can handle
-  // audience switching correctly.
+  // Find the baseline post whose experience's nt_variants references it and
+  // redirect there, so the <Experience> component (which only lives on the
+  // baseline URL) can evaluate audience membership.
   const postExperiences = (post.fields as any).nt_experiences;
   if (!postExperiences || (Array.isArray(postExperiences) && postExperiences.length === 0)) {
     const allPosts = await getAllBlogPosts(preview, locale, false);
@@ -167,18 +167,11 @@ export const getStaticProps: GetStaticProps<Props, { slug: string }> = async ({
       const exps = (candidate.fields as any).nt_experiences;
       if (!Array.isArray(exps) || exps.length === 0) continue;
       for (const exp of exps) {
-        const config = (exp as any)?.fields?.nt_config;
-        const components = Array.isArray(config?.components)
-          ? config.components
-          : config?.components
-          ? [config.components]
-          : [];
-        for (const comp of components) {
-          const variants: any[] = Array.isArray(comp.variants) ? comp.variants : [];
-          if (variants.some((v) => v?.sys?.id === post.sys.id)) {
-            baselineSlug = (candidate.fields as any).slug ?? null;
-            break outer;
-          }
+        const variants: any[] = (exp as any)?.fields?.nt_variants;
+        if (!Array.isArray(variants)) continue;
+        if (variants.some((v) => v?.sys?.id === post.sys.id)) {
+          baselineSlug = (candidate.fields as any).slug ?? null;
+          break outer;
         }
       }
     }
