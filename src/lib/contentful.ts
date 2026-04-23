@@ -79,11 +79,17 @@ export async function getBlogPostBySlug(slug: string, preview = false, locale = 
 }
 
 export async function getAllBlogPostSlugs() {
+  // Exclude variants (includeInBlogSplashPage=false) so Next.js doesn't
+  // prerender their URLs as 200 pages. Variant requests go through
+  // fallback: "blocking" which lets getStaticProps redirect them to the
+  // baseline post URL where the <Experience> component handles audience
+  // switching.
   const entries = await client.getEntries({
     content_type: "blogPost",
     select: ["fields.slug"],
     locale: DEFAULT_LOCALE,
     limit: 100,
+    "fields.includeInBlogSplashPage[ne]": false,
   });
   return entries.items.map((item) => (item.fields as { slug: string }).slug);
 }
