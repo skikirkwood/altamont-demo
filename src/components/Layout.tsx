@@ -21,7 +21,7 @@ export default function Layout({ children, navigation, seo, title }: Props) {
         })
       : null;
 
-  const pageTitle = seoFields?.metaTitle ?? title ?? "Lucid Motors";
+  const pageTitle = seoFields?.metaTitle ?? title ?? "Altamont";
 
   return (
     <>

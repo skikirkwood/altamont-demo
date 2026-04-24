@@ -56,10 +56,10 @@ export default function HomePage({
 
   if (!page || !isResolvedEntry(page)) {
     return (
-      <Layout navigation={navigation} title="Lucid Motors">
+      <Layout navigation={navigation} title="Altamont">
         <section className="flex min-h-[60vh] items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-900">Welcome to Lucid Motors</h1>
+            <h1 className="text-4xl font-bold text-gray-900">Welcome to Altamont</h1>
             <p className="mt-4 text-lg text-gray-600">
               Content is loading. Create a page with slug &quot;home&quot; in Contentful to get started.
             </p>

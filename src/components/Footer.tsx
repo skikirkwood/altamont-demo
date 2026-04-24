@@ -3,24 +3,24 @@ import Image from "next/image";
 
 const LINKS = {
   vehicles: [
-    { label: "Lucid Air", href: "https://www.lucidmotors.com/lucid-air" },
-    { label: "Lucid Gravity", href: "https://www.lucidmotors.com/lucid-gravity" },
-    { label: "Compare models", href: "https://www.lucidmotors.com/compare-models" },
+    { label: "Altamont Air", href: "#" },
+    { label: "Altamont Gravity", href: "#" },
+    { label: "Compare models", href: "#" },
   ],
   experience: [
-    { label: "DreamDrive", href: "https://www.lucidmotors.com/technology/dreamdrive" },
+    { label: "DreamDrive", href: "#" },
     { label: "Charging & range", href: "/charging" },
-    { label: "Lucid app", href: "https://www.lucidmotors.com/lucid-app" },
+    { label: "Altamont app", href: "#" },
   ],
   ownership: [
-    { label: "Service & support", href: "https://www.lucidmotors.com/ownership" },
-    { label: "Help center", href: "https://www.lucidmotors.com/support" },
-    { label: "Contact us", href: "https://www.lucidmotors.com/contact" },
+    { label: "Service & support", href: "#" },
+    { label: "Help center", href: "#" },
+    { label: "Contact us", href: "#" },
   ],
   company: [
-    { label: "About Lucid Motors", href: "https://www.lucidmotors.com/about-us" },
-    { label: "Privacy", href: "https://www.lucidmotors.com/legal/privacy-policy" },
-    { label: "Terms", href: "https://www.lucidmotors.com/legal/terms-of-use" },
+    { label: "About Altamont", href: "#" },
+    { label: "Privacy", href: "#" },
+    { label: "Terms", href: "#" },
   ],
 };
 
@@ -53,7 +53,7 @@ export default function Footer() {
           <Link href="/">
             <Image
               src="/lucid-motors-logo.png"
-              alt="Lucid Motors"
+              alt="Altamont"
               width={960}
               height={61}
               className="h-8 w-auto max-w-[min(100%,320px)] object-contain object-left sm:h-9 sm:max-w-[400px]"
@@ -103,7 +103,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="mt-10 border-t border-gray-800 pt-6 text-center text-xs">
-          <p>© {new Date().getFullYear()} Lucid Motors. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Altamont. All rights reserved.</p>
         </div>
       </div>
     </footer>

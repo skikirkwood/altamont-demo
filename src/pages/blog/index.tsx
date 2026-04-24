@@ -143,7 +143,7 @@ export default function BlogIndex({
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold tracking-tight text-white">Blog</h1>
           <p className="mt-3 max-w-2xl text-lg text-gray-400">
-            Stories from Lucid — news, technology, and the road ahead.
+            Stories from Altamont — news, technology, and the road ahead.
           </p>
         </div>
       </section>

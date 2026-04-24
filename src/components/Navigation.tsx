@@ -79,7 +79,7 @@ export default function Navigation({ menu }: Props) {
           <Link href="/" className="flex items-center">
             <Image
               src="/lucid-motors-logo.png"
-              alt="Lucid Motors"
+              alt="Altamont"
               width={960}
               height={61}
               className="h-7 w-auto max-w-[min(100%,220px)] object-contain object-left sm:h-8 sm:max-w-[280px] invert"
@@ -101,7 +101,7 @@ export default function Navigation({ menu }: Props) {
         <Link href="/" className="flex items-center">
           <Image
             src="/lucid-motors-logo.png"
-            alt="Lucid Motors"
+            alt="Altamont"
             width={960}
             height={61}
             className="h-7 w-auto max-w-[min(100%,220px)] object-contain object-left sm:h-8 sm:max-w-[280px] invert"
