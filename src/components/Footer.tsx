@@ -52,10 +52,10 @@ export default function Footer() {
         <div className="mb-8">
           <Link href="/">
             <Image
-              src="/lucid-motors-logo.png"
+              src="/altamont-logo.png"
               alt="Altamont"
               width={960}
-              height={61}
+              height={100}
               className="h-8 w-auto max-w-[min(100%,320px)] object-contain object-left sm:h-9 sm:max-w-[400px]"
             />
           </Link>
