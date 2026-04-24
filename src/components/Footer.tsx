@@ -52,11 +52,11 @@ export default function Footer() {
         <div className="mb-8">
           <Link href="/">
             <Image
-              src="/altamont-logo.png"
+              src="/altamont-logo.svg"
               alt="Altamont"
-              width={960}
-              height={100}
-              className="h-8 w-auto max-w-[min(100%,320px)] object-contain object-left sm:h-9 sm:max-w-[400px]"
+              width={480}
+              height={60}
+              className="h-10 w-auto max-w-[min(100%,360px)] object-contain object-left sm:h-12 sm:max-w-[440px]"
             />
           </Link>
         </div>

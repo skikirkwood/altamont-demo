@@ -78,11 +78,11 @@ export default function Navigation({ menu }: Props) {
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link href="/" className="flex items-center">
             <Image
-              src="/altamont-logo.png"
+              src="/altamont-logo.svg"
               alt="Altamont"
-              width={960}
-              height={100}
-              className="h-7 w-auto max-w-[min(100%,220px)] object-contain object-left sm:h-8 sm:max-w-[280px]"
+              width={480}
+              height={60}
+              className="h-9 w-auto max-w-[min(100%,260px)] object-contain object-left sm:h-10 sm:max-w-[320px]"
               priority
             />
           </Link>
@@ -100,11 +100,11 @@ export default function Navigation({ menu }: Props) {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center">
           <Image
-            src="/altamont-logo.png"
+            src="/altamont-logo.svg"
             alt="Altamont"
-            width={960}
-            height={100}
-            className="h-7 w-auto max-w-[min(100%,220px)] object-contain object-left sm:h-8 sm:max-w-[280px]"
+            width={480}
+            height={60}
+            className="h-9 w-auto max-w-[min(100%,260px)] object-contain object-left sm:h-10 sm:max-w-[320px]"
             priority
           />
         </Link>
