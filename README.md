@@ -24,6 +24,11 @@ A Next.js (Pages Router) front-end that renders pages composed in Contentful, st
    | `CONTENTFUL_ACCESS_TOKEN` | Content Delivery API token |
    | `CONTENTFUL_PREVIEW_TOKEN` | Content Preview API token |
    | `CONTENTFUL_ENVIRONMENT` | Environment name (default: `master`) |
+   | `CONTENTFUL_PREVIEW_SECRET` | Shared secret for `/api/draft`; must match the `secret` used in Contentful preview URLs |
+   | `NEXT_PUBLIC_CONTENTFUL_SPACE_ID` | Same space ID, exposed to the browser for Live Preview / deep links to entries in the Contentful web app |
+   | `NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT` | Environment name for those links (often the same as `CONTENTFUL_ENVIRONMENT`) |
+   | `NEXT_PUBLIC_NINETAILED_API_KEY` | Ninetailed client ID for Contentful Personalization |
+   | `NEXT_PUBLIC_NINETAILED_ENVIRONMENT` | Ninetailed environment (e.g. `main`) |
 
 3. **Create a home page in Contentful**
 
