@@ -1,6 +1,6 @@
 # Lucid Motors – Next.js + Contentful
 
-A Next.js  (Pages Router) front-end that renders pages composed in Contentful, styled as a Lucid Motors marketing demo.
+A Next.js (Pages Router) front-end that renders pages composed in Contentful, styled as a Lucid Motors marketing demo.
 
 ## Getting Started
 
@@ -41,6 +41,14 @@ A Next.js  (Pages Router) front-end that renders pages composed in Contentful, s
    ```
 
    Open [http://localhost:3000](http://localhost:3000).
+
+## Blog taxonomy (manual Contentful setup)
+
+If you want categories or tags for blog posts, model them in the Contentful UI (no migration script ships with this repo). A typical pattern:
+
+1. Add a **Blog Topic** (or **Category**) content type with an editor-facing title and a **unique slug** (URL segment).
+2. On **Blog Post**, add a field such as **Topics** — an **Array** of **Entry** references restricted to that content type.
+3. In this app, blog URLs stay under `/blog/<post-slug>` until you extend `src/lib/contentful.ts` and the pages under `src/pages/blog/` to query or filter by those references (for example using the Delivery API’s `links_to_entry` parameter for a topic’s entry id).
 
 ## Architecture
 
