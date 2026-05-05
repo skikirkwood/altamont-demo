@@ -1,6 +1,6 @@
 # Lucid Motors – Next.js + Contentful
 
-A Next.js (Pages Router) front-end that renders pages composed in Contentful, styled as a Lucid Motors marketing demo.
+A Next.js  (Pages Router) front-end that renders pages composed in Contentful, styled as a Lucid Motors marketing demo.
 
 ## Getting Started
 
